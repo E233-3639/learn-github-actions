@@ -1,7 +1,7 @@
 name: Build Check
 
 on:
-  pull_request:
+  push:
     branches:
       - '*'
   workflow_dispatch:
@@ -13,6 +13,7 @@ jobs:
     - name: install-build-essential
       run: sudo apt update
       run: sudo apt upgrade
+      run: sudo apt install build-essential
 
     - name: checkout
       uses: actions/checkout@v3
@@ -22,3 +23,15 @@ jobs:
 
     - name: run
       run: ./learn-github-actions
+    
+    - name: echo result1
+      run: echo Hello GitHub Actions > output1.txt
+    
+    - name: echo result2
+      run: echo Hello GitHub Actions > output2.txt
+    
+    - name: export echo result
+      uses: actions/upload-artifact@v4
+      with:
+        path: output1.txt
+        path: output2.txt
