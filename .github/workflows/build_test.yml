@@ -33,5 +33,4 @@ jobs:
     - name: export echo result
       uses: actions/upload-artifact@v4
       with:
-        path: output1.txt
-        path: output2.txt
+        path: [output1.txt output2.txt]
